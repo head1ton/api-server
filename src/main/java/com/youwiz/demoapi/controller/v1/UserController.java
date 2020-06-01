@@ -1,5 +1,6 @@
 package com.youwiz.demoapi.controller.v1;
 
+import com.youwiz.demoapi.advice.exception.CUserNotFoundException;
 import com.youwiz.demoapi.entity.User;
 import com.youwiz.demoapi.model.response.CommonResult;
 import com.youwiz.demoapi.model.response.ListResult;
@@ -37,7 +38,7 @@ public class UserController {
     @GetMapping(value = "/user/{msrl}")
     public SingleResult<User> findUserById(@ApiParam(value = "회원ID", required = true) @PathVariable long msrl) {
         // 결과데이터가 단일 건인 경우 getBasicResult를 이용해서 결과를 출력한다.
-        return responseService.getSingleResult(userJpaRepo.findById(msrl).orElse(null));
+        return responseService.getSingleResult(userJpaRepo.findById(msrl).orElseThrow(CUserNotFoundException::new));
     }
 
     @ApiOperation(value = "회원 입력", notes = "회원을 입력한다.")
