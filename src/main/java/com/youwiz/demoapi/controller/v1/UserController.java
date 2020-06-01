@@ -34,10 +34,10 @@ public class UserController {
         return responseService.getListResult(userJpaRepo.findAll());
     }
 
-    @ApiOperation(value = "회원 단건 조회", notes = "userId로 회원을 조회한다.")
+    @ApiOperation(value = "회원 단건 조회", notes = "userId로 회원을 조회한다")
     @GetMapping(value = "/user/{msrl}")
-    public SingleResult<User> findUserById(@ApiParam(value = "회원ID", required = true) @PathVariable long msrl) {
-        // 결과데이터가 단일 건인 경우 getBasicResult를 이용해서 결과를 출력한다.
+    public SingleResult<User> findUserById(@ApiParam(value = "회원ID", required = true) @PathVariable long msrl, @ApiParam(value = "언어", defaultValue = "ko") @RequestParam String lang) {
+        // 결과데이터가 단일건인경우 getBasicResult를 이용해서 결과를 출력한다.
         return responseService.getSingleResult(userJpaRepo.findById(msrl).orElseThrow(CUserNotFoundException::new));
     }
 
