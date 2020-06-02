@@ -6,9 +6,7 @@ ControllerAdvice는 Spring에서 제공하는 annotation으로 Controller에 전
 이러한 특성을 이용하면 @ControllerAdvice와 @ExceptionHandler를 조합하여 예외 처리를 공통 코드로 분리하여 작성할 수 있습니다.
  */
 
-import com.youwiz.demoapi.advice.exception.CAuthenticationEntryPointException;
-import com.youwiz.demoapi.advice.exception.CEmailSigninFailedException;
-import com.youwiz.demoapi.advice.exception.CUserNotFoundException;
+import com.youwiz.demoapi.advice.exception.*;
 import com.youwiz.demoapi.model.response.CommonResult;
 import com.youwiz.demoapi.service.ResponseService;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +61,18 @@ public class ExceptionAdvice {
     @ExceptionHandler(AccessDeniedException.class)
     public CommonResult AccessDeniedException(HttpServletRequest request, AccessDeniedException e) {
         return responseService.getFailResult(Integer.valueOf(getMessage("accessDenied.code")), getMessage("accessDenied.msg"));
+    }
+
+    @ExceptionHandler(CCommunicationException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult communicationException(HttpServletRequest request, CCommunicationException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("communicationError.code")), getMessage("communicationError.msg"));
+    }
+
+    @ExceptionHandler(CUserExistException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public CommonResult communicationException(HttpServletRequest request, CUserExistException e) {
+        return responseService.getFailResult(Integer.valueOf(getMessage("existingUser.code")), getMessage("existingUser.msg"));
     }
 
     // code 정보에 해당하는 메시지를 조회합니다.

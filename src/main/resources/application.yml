@@ -19,3 +19,13 @@ spring:
     encoding: UTF-8
   jwt:
     secret: govlepe1@$&
+  social:
+    kakao:
+      client_id: ddb7b0eef3f5c94f52b80ee3bbca478e # 앱성성시 받은 REST API 키
+      redirect: /social/login/kakao
+      url:
+        login: https://kauth.kakao.com/oauth/authorize
+        token: https://kauth.kakao.com/oauth/token
+        profile: https://kapi.kakao.com/v2/user/me
+  url:
+    base: http://localhost:8080
