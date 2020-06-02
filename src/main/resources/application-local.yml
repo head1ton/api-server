@@ -1,0 +1,37 @@
+logging:
+  level:
+    root: debug
+    com.youwiz.demoapi: debug
+
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    properties:
+      hibernate.format_sql: true
+    show-sql: true
+    generate-ddl: true
+#  messages:
+#    basename: i18n/exception
+#    encoding: UTF-8
+#  jwt:
+#    secret: govlepe1@$&
+#  social:
+#    kakao:
+#      client_id: ddb7b0eef3f5c94f52b80ee3bbca478e # 앱성성시 받은 REST API 키
+#      redirect: /social/login/kakao
+#      url:
+#        login: https://kauth.kakao.com/oauth/authorize
+#        token: https://kauth.kakao.com/oauth/token
+#        profile: https://kapi.kakao.com/v2/user/me
+  url:
+    base: http://localhost:8080
