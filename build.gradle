@@ -39,6 +39,8 @@ dependencies {
 	implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'	// 다국어지원을 위해 https://github.com/akihyro/yaml-resource-bundle
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
